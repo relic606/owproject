@@ -14,6 +14,16 @@ const VIDEOCLIPS = [
     type: "highlight",
     URL: "https://drive.google.com/uc?id=1sc8lzNoeoENnAXujAavYgWlXv4rfgL2a",
   },
+  {
+    hero: "Genji",
+    type: "highlight",
+    URL: "https://drive.google.com/uc?id=1IHIGaSK4XwzLHmazD4CH047mnHqGTadj",
+  },
+  {
+    hero: "Ana",
+    type: "highlight",
+    URL: "https://drive.google.com/uc?id=1sc8lzNoeoENnAXujAavYgWlXv4rfgL2a",
+  },
 ];
 
 export default VIDEOCLIPS;
