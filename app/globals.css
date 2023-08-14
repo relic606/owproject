@@ -4,4 +4,9 @@
 
 .center-video {
   width: 1000px;
+  min-height: 600px;
+}
+.side-video {
+  min-width: 300px;
+  min-height: 160px;
 }
