@@ -33,7 +33,7 @@ export default function Stats() {
   };
 
   useEffect(() => {
-    fetch(`https://ow-api.com/v1/stats/pc/us/${profile}/complete/`)
+    fetch(`https://ow-api.com/v1/stats/pc/us/${profile}/complete`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -85,7 +85,7 @@ export default function Stats() {
             Search for Profile
           </button>
           <div className="flex">
-            <img src={data.icon} className="mx-8"></img>
+            <img src={data.icon} className="mx-8" alt=""></img>
             <div>
               <p className="text-2xl font-bold">{data.name}</p>
               <p>Games Played - {data.gamesPlayed}</p>
@@ -93,9 +93,9 @@ export default function Stats() {
               <p>Lost - {data.gamesLost}</p>
             </div>
           </div>
-          <pre>
+          {/* <pre>
             <code>{JSON.stringify(data, null, 2)}</code>
-          </pre>
+          </pre> */}
         </div>
       );
     }
