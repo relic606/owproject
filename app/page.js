@@ -75,11 +75,8 @@ export default function Home() {
       <div className="flex my-auto bg-white/90 p-8">
         {selectedIndex > 0 ? (
           <div className="my-auto bg-black rounded-md text-white p-4">
-            <p>{videoArr[selectedIndex - 1].hero}</p>
             <iframe
-              src={`https://www.youtube.com/embed/${
-                videoArr[selectedIndex - 1].ID
-              }?controls=0`}
+              src={`${videoArr[selectedIndex - 1].URL}?controls=0`}
               frameborder="0"
               allow="autoplay; encrypted-media"
               title="video"
@@ -94,9 +91,8 @@ export default function Home() {
         )}
 
         <div className="bg-black text-white mx-4 p-4 pb-8 rounded-md">
-          <p>{videoArr[selectedIndex].hero}</p>
           <iframe
-            src={`https://www.youtube.com/embed/${videoArr[selectedIndex].ID}`}
+            src={videoArr[selectedIndex].URL}
             frameborder="0"
             modestbranding
             allow="autoplay; encrypted-media"
@@ -111,11 +107,8 @@ export default function Home() {
         </div>
         {selectedIndex !== videoArr.length - 1 ? (
           <div className="my-auto bg-black rounded-md text-white p-4">
-            <p>{videoArr[selectedIndex + 1].hero}</p>
             <iframe
-              src={`https://www.youtube.com/embed/${
-                videoArr[selectedIndex + 1].ID
-              }?controls=0`}
+              src={`${videoArr[selectedIndex + 1].URL}?controls=0`}
               frameborder="0"
               modestbranding
               allow="autoplay; encrypted-media"
