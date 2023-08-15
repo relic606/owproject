@@ -1,12 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import VIDEOCLIPS from "../public/videodetails.js";
 import Link from "next/link";
 
 export default function Home() {
   const [videoArr, setVideoArr] = useState(VIDEOCLIPS);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedHero, setSelectedHero] = useState("default");
+
+  const initHeroArr = [];
+  videoArr.forEach(function (highlight, index) {
+    if (!initHeroArr.includes(highlight.hero)) {
+      initHeroArr.push(highlight.hero);
+    }
+  });
+
+  const [heroArr, setHeroArr] = useState(initHeroArr);
+
+  function filterHero(e) {
+    setVideoArr(VIDEOCLIPS);
+    const newSelectedHero = e.target.value;
+    setSelectedHero(newSelectedHero);
+    setSelectedIndex(0);
+  }
 
   function incrSelectedIndex() {
     if (selectedIndex !== videoArr.length - 1) {
@@ -21,11 +38,40 @@ export default function Home() {
     }
   }
 
+  useEffect(() => {
+    if (selectedHero !== "default") {
+      const newVideoArr = videoArr;
+      const filteredArr = newVideoArr.filter((highlight) => {
+        return highlight.hero === selectedHero;
+      });
+      setVideoArr(filteredArr);
+    }
+  }, [selectedHero]);
+
   return (
     <main className="flex justify-center h-screen bg-[url('/ow-bg.jpg')] bg-contain bg-no-repeat bg-center">
-      <Link href="/stats" className="absolute">
+      <Link href="/stats" className="absolute p-2 bg-white">
         Stats
       </Link>
+
+      <div className="h-fit w-fit absolute left-24 bg-white border-black border p-1">
+        <label for="hero-select">Choose a Hero:</label>
+        <select
+          name="heros"
+          id="hero-select"
+          onChange={filterHero}
+          value={selectedHero}
+        >
+          <option value="default">- All Heroes -</option>
+          {heroArr.map((hero) => {
+            return (
+              <option key={hero} value={hero}>
+                {hero}
+              </option>
+            );
+          })}
+        </select>
+      </div>
       <div className="flex my-auto bg-white/90 p-8">
         {selectedIndex > 0 ? (
           <div className="my-auto bg-black rounded-md text-white p-4">
@@ -54,7 +100,7 @@ export default function Home() {
             frameborder="0"
             modestbranding
             allow="autoplay; encrypted-media"
-            allowfullscreen="allowfullscreen"
+            allowFullScreen="allowfullscreen"
             mozallowfullscreen="mozallowfullscreen"
             msallowfullscreen="msallowfullscreen"
             oallowfullscreen="oallowfullscreen"
@@ -63,7 +109,6 @@ export default function Home() {
             className="center-video"
           />
         </div>
-
         {selectedIndex !== videoArr.length - 1 ? (
           <div className="my-auto bg-black rounded-md text-white p-4">
             <p>{videoArr[selectedIndex + 1].hero}</p>
