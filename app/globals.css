@@ -3,10 +3,34 @@
 @tailwind utilities;
 
 .center-video {
-  width: 1000px;
-  min-height: 600px;
+	width: 1000px;
+	min-height: 600px;
 }
 .side-video {
-  width: 300px;
-  height: 160px;
+	width: 300px;
+	height: 160px;
+}
+
+body {
+	margin: 0;
+	overflow: hidden; /* Hide overflow to prevent scrolling */
+}
+
+.background-container {
+	opacity: 25%;
+	position: absolute;
+	top: 4%;
+	left: 0;
+	width: 230%;
+	height: 100%;
+	animation: rotateBackground 150s linear infinite; /* Adjust timing as needed */
+}
+
+@keyframes rotateBackground {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%); /* Translate back half the container width */
+	}
 }
