@@ -13,7 +13,7 @@
 
 body {
 	margin: 0;
-	overflow: hidden; /* Hide overflow to prevent scrolling */
+	overflow: hidden;
 }
 
 .background-container {
@@ -23,7 +23,7 @@ body {
 	left: 0;
 	width: 230%;
 	height: 100%;
-	animation: rotateBackground 150s linear infinite; /* Adjust timing as needed */
+	animation: rotateBackground 300s linear infinite;
 }
 
 @keyframes rotateBackground {
@@ -31,6 +31,6 @@ body {
 		transform: translateX(0);
 	}
 	100% {
-		transform: translateX(-50%); /* Translate back half the container width */
+		transform: translateX(-50%);
 	}
 }
