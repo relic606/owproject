@@ -302,13 +302,12 @@ export default function Stats() {
                     }
                   </p> */}
                   <p>
+                    Healing -
                     {heroStats.assists
-                      ? `Healing - ${
-                          heroStats.assists.healingDone
-                            ? heroStats.assists.healingDone
-                            : "n/a"
-                        }`
-                      : null}
+                      ? heroStats.assists.healingDone
+                        ? heroStats.assists.healingDone
+                        : "0"
+                      : "0"}
                   </p>
                   <p>
                     Deaths -{heroStats.combat ? heroStats.combat.deaths : "0"}
@@ -349,13 +348,12 @@ export default function Stats() {
                       : "0"}
                   </p>
                   <p>
+                    Healing -
                     {heroStats.assists
-                      ? `Healing - ${
-                          heroStats.assists.healingDoneMostInGame
-                            ? `${heroStats.assists.healingDoneMostInGame}`
-                            : "n/a"
-                        }`
-                      : null}
+                      ? heroStats.assists.healingDoneMostInGame
+                        ? heroStats.assists.healingDoneMostInGame
+                        : "0"
+                      : "0"}
                   </p>
                 </div>
               </div>
