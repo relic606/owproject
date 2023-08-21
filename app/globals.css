@@ -3,34 +3,61 @@
 @tailwind utilities;
 
 .center-video {
-  width: 1000px;
-  min-height: 600px;
+	width: 1000px;
+	min-height: 600px;
 }
 .side-video {
-  width: 300px;
-  height: 160px;
+	width: 300px;
 }
 
 body {
-  margin: 0;
-  overflow: hidden;
+	margin: 0;
+	overflow: hidden;
 }
 
 .background-container {
-  opacity: 25%;
-  position: absolute;
-  top: 4%;
-  left: 0;
-  width: 230%;
-  height: 100%;
-  animation: rotateBackground 300s linear infinite;
+	opacity: 25%;
+	position: absolute;
+	top: 4%;
+	left: 0;
+	width: 230%;
+	height: 100%;
+	animation: rotateBackground 300s linear infinite;
 }
 
 @keyframes rotateBackground {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+/* Basic styling for the image checkboxes */
+.image-checkboxes {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.checkbox-label {
+	display: block;
+	position: relative;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.checkbox-input {
+	display: none; /* Hide the actual checkbox */
+}
+
+/* Styling for unchecked images */
+.checkbox-label img {
+	border: 2px solid #ccc;
+}
+
+/* Styling for checked images */
+.checkbox-label img.checked {
+	border-color: #00a0e9;
+	box-shadow: 0 0 5px #00a0e9;
 }
