@@ -2,39 +2,42 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Header() {
   const pathName = usePathname();
   return (
-    <header className="bg-black text-white py-2">
-      <div className="flex mx-auto px-2">
+    <header className="bg-white flex h-20 relative z-10 border-b border-gray-400 bg-gradient-to-b from-white to-gray-200 font-bold text-lg">
+      <div
+        className="absolute left-10
+      top-2"
+      >
+        <Link href={"/"}>
+          <Image
+            src="/icons/Icon-Overwatch.png"
+            width={80}
+            height={0}
+            alt="overwatch logo"
+          />
+        </Link>
+      </div>
+      <div className="flex mx-auto my-auto">
         <nav>
-          <ul className="flex">
-            <li className="px-8">
-              <Link
-                href={"/"}
-                className={`rounded-full ${
-                  pathName === "/"
-                    ? "text-black bg-white p-1"
-                    : "hover:text-gray-400 transition delay-50"
-                }`}
-              >
-                Highlights
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={"/stats"}
-                className={`rounded-full ${
-                  pathName === "/stats"
-                    ? "text-black bg-white p-1"
-                    : "hover:text-gray-400 transition delay-50"
-                }`}
-              >
-                Stats
-              </Link>
-            </li>
-          </ul>
+          <Link
+            href={"/"}
+            className={`orange-text transition delay-50 p-4
+                ${pathName === "/" ? "" : ""}
+                `}
+          >
+            Highlights
+          </Link>
+          <Link
+            href={"/stats"}
+            className={`orange-text transition delay-50 p-4
+            ${pathName === "/stats" ? "" : ""}`}
+          >
+            Stats
+          </Link>
         </nav>
       </div>
     </header>
