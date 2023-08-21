@@ -12,6 +12,18 @@ const VIDEOCLIPS = [
     img: "http://img.youtube.com/vi_webp/0jMhldPdnI4/0.webp",
   },
   {
+    hero: "Ana",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/P4eSgi7R9Qs",
+    img: "http://img.youtube.com/vi_webp/P4eSgi7R9Qs/0.webp",
+  },
+  {
+    hero: "Ana",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/fRq7BDBqVNo",
+    img: "http://img.youtube.com/vi_webp/fRq7BDBqVNo/0.webp",
+  },
+  {
     hero: "Doomfist",
     type: "highlight",
     URL: "https://www.youtube.com/embed/2N8uqM6ZxjE",
@@ -71,7 +83,18 @@ const VIDEOCLIPS = [
     URL: "https://www.youtube.com/embed/JysMIJ02ntk",
     img: "http://img.youtube.com/vi_webp/JysMIJ02ntk/0.webp",
   },
-
+  {
+    hero: "Genji",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/hji6SUr0m7U",
+    img: "http://img.youtube.com/vi_webp/hji6SUr0m7U/0.webp",
+  },
+  {
+    hero: "Genji",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/Gb4KP7dz0Kg",
+    img: "http://img.youtube.com/vi_webp/Gb4KP7dz0Kg/0.webp",
+  },
   {
     hero: "Sojourn",
     type: "highlight",
@@ -96,6 +119,36 @@ const VIDEOCLIPS = [
     type: "highlight",
     URL: "https://www.youtube.com/embed/3Xp059V98kA",
     img: "http://img.youtube.com/vi_webp/3Xp059V98kA/0.webp",
+  },
+  {
+    hero: "Widowmaker",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/Kj812T5t7Ec",
+    img: "http://img.youtube.com/vi_webp/Kj812T5t7Ec/0.webp",
+  },
+  {
+    hero: "Widowmaker",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/50prET6PKHM",
+    img: "http://img.youtube.com/vi_webp/50prET6PKHM/0.webp",
+  },
+  {
+    hero: "Widowmaker",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/fO5Qm6-ufA8",
+    img: "http://img.youtube.com/vi_webp/fO5Qm6-ufA8/0.webp",
+  },
+  {
+    hero: "Widowmaker",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/56giMzWRiTE",
+    img: "http://img.youtube.com/vi_webp/56giMzWRiTE/0.webp",
+  },
+  {
+    hero: "Widowmaker",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/8y_yu71KQxo",
+    img: "http://img.youtube.com/vi_webp/8y_yu71KQxo/0.webp",
   },
 ];
 
