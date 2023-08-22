@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import AllHeroStats from "../components/AllHeroStats";
+import SelectedHeroStats from "../components/SelectedHeroStats";
 
 export default function Stats() {
   const [data, setData] = useState(null);
@@ -18,7 +20,7 @@ export default function Stats() {
   const [competitiveStats, setCompetitiveStats] = useState({});
   const [displayStatsObj, setDisplayStatsObj] = useState({});
 
-  const [selectedHero, setSelectedHero] = useState("");
+  const [selectedHero, setSelectedHero] = useState("allHeroes");
   const [heroStats, setHeroStats] = useState({});
 
   const newProfile = () => {
@@ -28,7 +30,7 @@ export default function Stats() {
       const formattedBT =
         // inputFieldBt.charAt(0).toUpperCase() +
         // inputFieldBt.slice(1).toLowerCase();
-        inputFieldBt
+        inputFieldBt;
       setProfile(formattedBT + "-" + inputFieldId);
       setData(null);
     }
@@ -47,20 +49,52 @@ export default function Stats() {
 
   function statsRadioChange(event) {
     setStatsRadioInput(event.target.value);
+
     if (event.target.value === "Quickplay") {
       setDisplayStatsObj(quickPlayStats);
-      setSelectedHero(quickplayHeroList[0][0]);
-      setHeroStats(quickplayHeroList[0][1]);
+
+      if (selectedHero !== "allHeroes") {
+        const heroArr = [];
+        Object.values(quickplayHeroList).map(([hero, stats]) => {
+          if (!heroArr.includes(hero)) {
+            heroArr.push(hero);
+          }
+        });
+
+        if (!heroArr.includes(selectedHero)) {
+          setSelectedHero("allHeroes");
+        } else {
+          const newHeroStats = quickplayHeroList.filter(
+            ([hero, stats]) => hero === selectedHero
+          )[0][1];
+          setHeroStats(newHeroStats);
+        }
+      }
     } else {
       setDisplayStatsObj(competitiveStats);
-      setSelectedHero(competitiveHeroList[0][0]);
-      setHeroStats(competitiveHeroList[0][1]);
+
+      if (selectedHero !== "allHeroes") {
+        const heroArr = [];
+        Object.values(competitiveHeroList).map(([hero, stats]) => {
+          if (!heroArr.includes(hero)) {
+            heroArr.push(hero);
+          }
+        });
+
+        if (!heroArr.includes(selectedHero)) {
+          setSelectedHero("allHeroes");
+        } else {
+          const newHeroStats = competitiveHeroList.filter(
+            ([hero, stats]) => hero === selectedHero
+          )[0][1];
+          setHeroStats(newHeroStats);
+        }
+      }
     }
   }
 
   function filterHero(e) {
     const newSelectedHero = e.target.value;
-
     const statsAsArr = Object.entries(displayStatsObj);
     const filteredArr = statsAsArr.filter(([heroName, value]) => {
       return heroName === newSelectedHero;
@@ -101,8 +135,7 @@ export default function Stats() {
         setStatsRadioInput("Quickplay");
         setQuickplayHeroList(quickplayHeroListArr);
         setCompetitiveHeroList(competitiveHeroListArr);
-        setSelectedHero(quickplayHeroListArr[0][0]);
-        setHeroStats(quickplayHeroListArr[0][1]);
+        setSelectedHero("allHeroes");
       });
   }, [profile]);
 
@@ -149,121 +182,41 @@ export default function Stats() {
           <button onClick={submitButton} className="mx-4 border">
             Search for Profile
           </button>
-          <div className="flex">
-            <img src={data.icon} className="mx-8" alt="Profile Image"></img>
-            <div className="my-auto">
-              <p className="text-2xl font-bold">{data.name}</p>
-              <p>Games Played - {data.gamesPlayed}</p>
-              <p>Won - {data.gamesWon}</p>
-              <p>Lost - {data.gamesLost}</p>
-            </div>
-          </div>
-          <div className="m-8">
-            <div onChange={statsRadioChange} className="mb-4">
-              <input
-                type="radio"
-                value="Quickplay"
-                name="stats"
-                checked={statsRadioInput === "Quickplay"}
-                className="mr-1"
-              />
-              Quickplay
-              <input
-                type="radio"
-                value="Competitive"
-                name="stats"
-                checked={statsRadioInput === "Competitive"}
-                className="ml-8 mr-1"
-              />
-              Competitive
-            </div>
-            <div className="flex">
-              <div className="w-60">
-                <p className="underline mb-4">Total</p>
-                <p className="flex justify-between">
-                  <div>Time Played</div>
-                  <div className="">
-                    {displayStatsObj.allHeroes.game.timePlayed}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Eliminations</div>
-                  <div>
-                    {displayStatsObj.allHeroes.combat.eliminations.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Final Blows</div>
-                  <div>
-                    {displayStatsObj.allHeroes.combat.finalBlows.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Damage</div>
-                  <div>
-                    {displayStatsObj.allHeroes.combat.damageDone.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Healing</div>
-                  <div>
-                    {displayStatsObj.allHeroes.assists.healingDone.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Off. Assists</div>
-                  <div>
-                    {displayStatsObj.allHeroes.assists.offensiveAssists.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Def. Assists</div>
-                  <div>
-                    {displayStatsObj.allHeroes.assists.defensiveAssists.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Deaths</div>
-                  <div>
-                    {displayStatsObj.allHeroes.combat.deaths.toLocaleString()}
-                  </div>
-                </p>
-              </div>
-              <div className="w-60 ml-12">
-                <p className="mb-4 underline">Highest</p>
-                <p className="flex justify-between">
-                  <div>Eliminations</div>
-                  <div>
-                    {displayStatsObj.allHeroes.best.eliminationsMostInGame.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Final Blows</div>
-                  <div>
-                    {displayStatsObj.allHeroes.best.finalBlowsMostInGame.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Damage</div>
-                  <div>
-                    {displayStatsObj.allHeroes.best.allDamageDoneMostInGame.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Kill Streak</div>
-                  <div>
-                    {displayStatsObj.allHeroes.best.killsStreakBest.toLocaleString()}
-                  </div>
-                </p>
-                <p className="flex justify-between">
-                  <div>Healing</div>
-                  <div>
-                    {displayStatsObj.allHeroes.best.healingDoneMostInGame.toLocaleString()}
-                  </div>
-                </p>
+          <section className="bg-white max-w-6xl mx-auto rounded-lg shadow-xl">
+            <div className="flex mx-6 py-6">
+              <img
+                src={data.icon}
+                className="rounded-xl w-16"
+                alt="Profile Image"
+              ></img>
+              <div className="my-auto pl-4">
+                <p className="a text-xl font-semibold">{data.name}</p>
+                <div className="text-sm font-light">
+                  {data.gamesPlayed} Games Played - {data.gamesWon} Wins -{" "}
+                  {data.gamesLost} Lost
+                </div>
               </div>
             </div>
-            <div>
+            <div className="h-px bg-gray-300"></div>
+            <div className="flex justify-between px-4 pt-4">
+              <div onChange={statsRadioChange} className="mb-4">
+                <input
+                  type="radio"
+                  value="Quickplay"
+                  name="stats"
+                  checked={statsRadioInput === "Quickplay"}
+                  className="mr-1"
+                />
+                Quickplay
+                <input
+                  type="radio"
+                  value="Competitive"
+                  name="stats"
+                  checked={statsRadioInput === "Competitive"}
+                  className="ml-8 mr-1"
+                />
+                Competitive
+              </div>
               <select
                 name="heros"
                 id="hero-select"
@@ -271,6 +224,9 @@ export default function Stats() {
                 value={selectedHero}
                 className="bg-gray-100 my-4"
               >
+                <option key="default" value="allHeroes">
+                  - All Heroes -
+                </option>
                 {statsRadioInput === "Quickplay"
                   ? quickplayHeroList.map(([hero, key]) => {
                       const firstLetter = hero.charAt(0).toUpperCase();
@@ -291,178 +247,13 @@ export default function Stats() {
                       );
                     })}
               </select>
-              <div className="flex">
-                <div className="w-60">
-                  <p className="mb-4 underline">Hero Total</p>
-                  <p className="flex justify-between">
-                    <div>Time Played</div>
-                    <div>{heroStats.game.timePlayed}</div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Win Percentage</div>
-                    <div>
-                      {heroStats.game.winPercentage
-                        ? heroStats.game.winPercentage
-                        : "0%"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Eliminations</div>
-                    <div>
-                      {heroStats.combat
-                        ? heroStats.combat.eliminations
-                          ? heroStats.combat.eliminations.toLocaleString()
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Final Blows</div>
-                    <div>
-                      {heroStats.combat
-                        ? heroStats.combat.finalBlows
-                          ? heroStats.combat.finalBlows.toLocaleString()
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Damage</div>
-                    <div>
-                      {heroStats.combat
-                        ? heroStats.combat.damageDone.toLocaleString()
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Healing</div>
-                    <div>
-                      {heroStats.assists
-                        ? heroStats.assists.healingDone
-                          ? heroStats.assists.healingDone.toLocaleString()
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Deaths</div>
-                    <div>
-                      {heroStats.combat
-                        ? heroStats.combat.deaths.toLocaleString()
-                        : "0"}
-                    </div>
-                  </p>
-                </div>
-                <div className="w-60 ml-12">
-                  <p className="mb-4 underline">Highest</p>
-                  <p className="flex justify-between">
-                    <div>Eliminations</div>
-                    <div>
-                      {heroStats.best
-                        ? heroStats.best.eliminationsMostInGame
-                          ? heroStats.best.eliminationsMostInGame
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Final Blows</div>
-                    <div>
-                      {heroStats.best
-                        ? heroStats.best.finalBlowsMostInGame
-                          ? heroStats.best.finalBlowsMostInGame
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Kill Streak</div>
-                    <div>
-                      {heroStats.best
-                        ? heroStats.best.killsStreakBest
-                          ? heroStats.best.killsStreakBest
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Damage</div>
-                    <div>
-                      {heroStats.best
-                        ? heroStats.best.allDamageDoneMostInGame
-                          ? heroStats.best.allDamageDoneMostInGame.toLocaleString()
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Healing</div>
-                    <div>
-                      {heroStats.assists
-                        ? heroStats.assists.healingDoneMostInGame
-                          ? heroStats.assists.healingDoneMostInGame.toLocaleString()
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                </div>
-                <div className="w-60 ml-12">
-                  <p className="mb-4 underline">Average/10min</p>
-                  <p className="flex justify-between">
-                    <div>Eliminations</div>
-                    <div>
-                      {heroStats.average
-                        ? heroStats.average.eliminationsAvgPer10Min
-                          ? heroStats.average.eliminationsAvgPer10Min
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-
-                  <p className="flex justify-between">
-                    <div>Final Blows</div>
-                    <div>
-                      {heroStats.average
-                        ? heroStats.average.finalBlowsAvgPer10Min
-                          ? heroStats.average.finalBlowsAvgPer10Min
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Damage</div>
-                    <div>
-                      {heroStats.average
-                        ? heroStats.average.allDamageDoneAvgPer10Min
-                          ? heroStats.average.allDamageDoneAvgPer10Min.toLocaleString()
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Healing</div>
-                    <div>
-                      {heroStats.average
-                        ? heroStats.average.healingDoneAvgPer10Min
-                          ? heroStats.average.healingDoneAvgPer10Min.toLocaleString()
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                  <p className="flex justify-between">
-                    <div>Deaths</div>
-                    <div>
-                      {heroStats.average
-                        ? heroStats.average.deathsAvgPer10Min
-                          ? heroStats.average.deathsAvgPer10Min
-                          : "0"
-                        : "0"}
-                    </div>
-                  </p>
-                </div>
-              </div>
             </div>
-          </div>
+            {selectedHero === "allHeroes" ? (
+              <AllHeroStats displayStatsObj={displayStatsObj} />
+            ) : (
+              <SelectedHeroStats heroStats={heroStats} />
+            )}
+          </section>
         </main>
       );
     }

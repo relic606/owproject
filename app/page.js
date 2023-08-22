@@ -94,7 +94,6 @@ export default function Home() {
 
   return (
     <main className="flex flex-col justify-center">
-      <div className="bg-[url('/ow-bg4.png')] bg-cover background-container"></div>
       <div className="image-checkboxes flex justify-center pt-8">
         <label className="checkbox-label">
           <input type="checkbox" className="checkbox-input" />
@@ -151,9 +150,9 @@ export default function Home() {
         </label>
       </div>
 
-      <div className="flex p-8 z-10 justify-center">
+      <div className="flex p-8 justify-center">
         {selectedIndex > 0 ? (
-          <div className="my-auto relative left-16 -z-10">
+          <div className="my-auto relative left-16">
             <img
               src={videoArr[selectedIndex - 1].img}
               className="side-video cursor-pointer"
@@ -167,7 +166,7 @@ export default function Home() {
           </div>
         )}
 
-        <div className="text-white rounded-md">
+        <div className="text-white rounded-md z-10">
           <iframe
             src={videoArr[selectedIndex].URL}
             frameborder="0"
@@ -179,7 +178,7 @@ export default function Home() {
             oallowfullscreen="oallowfullscreen"
             webkitallowfullscreen="webkitallowfullscreen"
             title="video"
-            className="center-video z-10"
+            className="center-video"
           />
         </div>
 
@@ -187,7 +186,7 @@ export default function Home() {
           <div className="my-auto cursor-pointer" onClick={incrSelectedIndex}>
             <img
               src={videoArr[selectedIndex + 1].img}
-              className="side-video relative right-16 -z-10"
+              className="side-video relative right-16"
               alt="video preview"
             />
           </div>
