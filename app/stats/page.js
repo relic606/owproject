@@ -111,31 +111,33 @@ export default function Stats() {
         console.log(data);
         setData(data);
 
-        setQuickPlayStats(data.quickPlayStats.careerStats);
-        setCompetitiveStats(data.competitiveStats.careerStats);
+        if (data.private === false) {
+          setQuickPlayStats(data.quickPlayStats.careerStats);
+          setCompetitiveStats(data.competitiveStats.careerStats);
 
-        setDisplayStatsObj(data.quickPlayStats.careerStats);
+          setDisplayStatsObj(data.quickPlayStats.careerStats);
 
-        const quickplayNewHeroList = Object.entries(
-          data.quickPlayStats.careerStats
-        );
-        const competitiveNewHeroList = Object.entries(
-          data.competitiveStats.careerStats
-        );
-        const quickplayHeroListArr = quickplayNewHeroList.filter(
-          ([heroName, value]) => {
-            return heroName !== "allHeroes";
-          }
-        );
-        const competitiveHeroListArr = competitiveNewHeroList.filter(
-          ([heroName, value]) => {
-            return heroName !== "allHeroes";
-          }
-        );
-        setStatsRadioInput("Quickplay");
-        setQuickplayHeroList(quickplayHeroListArr);
-        setCompetitiveHeroList(competitiveHeroListArr);
-        setSelectedHero("allHeroes");
+          const quickplayNewHeroList = Object.entries(
+            data.quickPlayStats.careerStats
+          );
+          const competitiveNewHeroList = Object.entries(
+            data.competitiveStats.careerStats
+          );
+          const quickplayHeroListArr = quickplayNewHeroList.filter(
+            ([heroName, value]) => {
+              return heroName !== "allHeroes";
+            }
+          );
+          const competitiveHeroListArr = competitiveNewHeroList.filter(
+            ([heroName, value]) => {
+              return heroName !== "allHeroes";
+            }
+          );
+          setStatsRadioInput("Quickplay");
+          setQuickplayHeroList(quickplayHeroListArr);
+          setCompetitiveHeroList(competitiveHeroListArr);
+          setSelectedHero("allHeroes");
+        }
       });
   }, [profile]);
 
@@ -161,6 +163,27 @@ export default function Stats() {
             Search Profile
           </button>
           <p>Player Not Found</p>
+        </main>
+      );
+    } else if (data.private === true) {
+      return (
+        <main>
+          <input
+            type="text"
+            onChange={inputHandlerBt}
+            placeholder="Battletag"
+            className="border m-4"
+          />
+          <input
+            type="text"
+            onChange={inputHandlerId}
+            placeholder="ID"
+            className="border"
+          />
+          <button onClick={submitButton} className="mx-4 border">
+            Search Profile
+          </button>
+          <p>Profile is set to private</p>
         </main>
       );
     } else {
