@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Header() {
   const pathName = usePathname();
   return (
-    <header className="bg-white flex h-20 relative z-10 border-b border-gray-400 bg-gradient-to-b from-white to-gray-200 font-bold text-lg">
+    <header className="bg-white flex h-20 relative z-10 border-b border-gray-400 bg-gradient-to-b from-white to-gray-200 text-lg">
       <div
         className="absolute left-10
       top-2"
@@ -25,8 +25,12 @@ export default function Header() {
         <nav>
           <Link
             href={"/"}
-            className={`orange-text transition delay-50 p-4
-                ${pathName === "/" ? "" : ""}
+            className={`orange-text transition delay-50 p-4 font
+                ${
+                  pathName === "/"
+                    ? "font-extrabold"
+                    : "font-semibold text-gray-800"
+                }
                 `}
           >
             Highlights
@@ -34,7 +38,11 @@ export default function Header() {
           <Link
             href={"/stats"}
             className={`orange-text transition delay-50 p-4
-            ${pathName === "/stats" ? "" : ""}`}
+            ${
+              pathName === "/stats"
+                ? "font-bold"
+                : "font-semibold text-gray-800"
+            }`}
           >
             Stats
           </Link>

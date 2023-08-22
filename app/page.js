@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import VIDEOCLIPS from "../public/videodetails.js";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -151,25 +151,23 @@ export default function Home() {
         </label>
       </div>
 
-      <div className="flex mx-auto p-8 z-10">
+      <div className="flex p-8 z-10 justify-center">
         {selectedIndex > 0 ? (
-          <div className="my-auto bg-black rounded-md text-white p-4">
+          <div className="my-auto relative left-16 -z-10">
             <img
               src={videoArr[selectedIndex - 1].img}
-              className="side-video"
+              className="side-video cursor-pointer"
               alt="video preview"
+              onClick={decrSelectedIndex}
             />
-            <button onClick={decrSelectedIndex} className="border p-2">
-              Previous Video
-            </button>
           </div>
         ) : (
-          <div className="p-4">
+          <div>
             <div className="side-video"></div>
           </div>
         )}
 
-        <div className="bg-black text-white mx-4 p-4 pb-8 rounded-md">
+        <div className="text-white rounded-md">
           <iframe
             src={videoArr[selectedIndex].URL}
             frameborder="0"
@@ -181,23 +179,20 @@ export default function Home() {
             oallowfullscreen="oallowfullscreen"
             webkitallowfullscreen="webkitallowfullscreen"
             title="video"
-            className="center-video"
+            className="center-video z-10"
           />
         </div>
 
         {selectedIndex !== videoArr.length - 1 ? (
-          <div className="my-auto bg-black rounded-md text-white p-4">
+          <div className="my-auto cursor-pointer" onClick={incrSelectedIndex}>
             <img
               src={videoArr[selectedIndex + 1].img}
-              className="side-video"
+              className="side-video relative right-16 -z-10"
               alt="video preview"
             />
-            <button onClick={incrSelectedIndex} className="border p-2">
-              Next Video
-            </button>
           </div>
         ) : (
-          <div className="p-4">
+          <div>
             <div className="side-video"></div>
           </div>
         )}

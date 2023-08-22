@@ -26,8 +26,9 @@ export default function Stats() {
       alert("Please provide a Battletag and ID");
     } else {
       const formattedBT =
-        inputFieldBt.charAt(0).toUpperCase() +
-        inputFieldBt.slice(1).toLowerCase();
+        // inputFieldBt.charAt(0).toUpperCase() +
+        // inputFieldBt.slice(1).toLowerCase();
+        inputFieldBt
       setProfile(formattedBT + "-" + inputFieldId);
       setData(null);
     }
