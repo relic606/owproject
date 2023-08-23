@@ -1,5 +1,7 @@
 export default function SelectedHeroStats(props) {
-  const heroStats = props.heroStats;
+
+
+
   return (
     <div className="px-8 pb-8">
       <div className="flex justify-between">
@@ -8,22 +10,22 @@ export default function SelectedHeroStats(props) {
             <p className="font-semibold pb-2">Hero Total</p>
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Time Played</span>
-              <span>{heroStats.game.timePlayed}</span>
+              <span>{props.heroStats[1].game.timePlayed}</span>
             </p>
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Win Percentage</span>
               <span>
-                {heroStats.game.winPercentage
-                  ? heroStats.game.winPercentage
+                {props.heroStats[1].game.winPercentage
+                  ? props.heroStats[1].game.winPercentage
                   : "0%"}
               </span>
             </p>
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Eliminations</span>
               <span>
-                {heroStats.combat
-                  ? heroStats.combat.eliminations
-                    ? heroStats.combat.eliminations.toLocaleString()
+                {props.heroStats[1].combat
+                  ? props.heroStats[1].combat.eliminations
+                    ? props.heroStats[1].combat.eliminations.toLocaleString()
                     : "0"
                   : "0"}
               </span>
@@ -31,9 +33,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Final Blows</span>
               <span>
-                {heroStats.combat
-                  ? heroStats.combat.finalBlows
-                    ? heroStats.combat.finalBlows.toLocaleString()
+                {props.heroStats[1].combat
+                  ? props.heroStats[1].combat.finalBlows
+                    ? props.heroStats[1].combat.finalBlows.toLocaleString()
                     : "0"
                   : "0"}
               </span>
@@ -41,17 +43,17 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Damage</span>
               <span>
-                {heroStats.combat
-                  ? heroStats.combat.damageDone.toLocaleString()
+                {props.heroStats[1].combat
+                  ? props.heroStats[1].combat.damageDone.toLocaleString()
                   : "0"}
               </span>
             </p>
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Healing</span>
               <span>
-                {heroStats.assists
-                  ? heroStats.assists.healingDone
-                    ? heroStats.assists.healingDone.toLocaleString()
+                {props.heroStats[1].assists
+                  ? props.heroStats[1].assists.healingDone
+                    ? props.heroStats[1].assists.healingDone.toLocaleString()
                     : "0"
                   : "0"}
               </span>
@@ -59,8 +61,8 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Deaths</span>
               <span>
-                {heroStats.combat
-                  ? heroStats.combat.deaths.toLocaleString()
+                {props.heroStats[1].combat
+                  ? props.heroStats[1].combat.deaths.toLocaleString()
                   : "0"}
               </span>
             </p>
@@ -73,9 +75,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Eliminations</span>
               <span>
-                {heroStats.best
-                  ? heroStats.best.eliminationsMostInGame
-                    ? heroStats.best.eliminationsMostInGame
+                {props.heroStats[1].best
+                  ? props.heroStats[1].best.eliminationsMostInGame
+                    ? props.heroStats[1].best.eliminationsMostInGame
                     : "0"
                   : "0"}
               </span>
@@ -83,9 +85,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Final Blows</span>
               <span>
-                {heroStats.best
-                  ? heroStats.best.finalBlowsMostInGame
-                    ? heroStats.best.finalBlowsMostInGame
+                {props.heroStats[1].best
+                  ? props.heroStats[1].best.finalBlowsMostInGame
+                    ? props.heroStats[1].best.finalBlowsMostInGame
                     : "0"
                   : "0"}
               </span>
@@ -93,9 +95,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Kill Streak</span>
               <span>
-                {heroStats.best
-                  ? heroStats.best.killsStreakBest
-                    ? heroStats.best.killsStreakBest
+                {props.heroStats[1].best
+                  ? props.heroStats[1].best.killsStreakBest
+                    ? props.heroStats[1].best.killsStreakBest
                     : "0"
                   : "0"}
               </span>
@@ -103,9 +105,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Damage</span>
               <span>
-                {heroStats.best
-                  ? heroStats.best.allDamageDoneMostInGame
-                    ? heroStats.best.allDamageDoneMostInGame.toLocaleString()
+                {props.heroStats[1].best
+                  ? props.heroStats[1].best.allDamageDoneMostInGame
+                    ? props.heroStats[1].best.allDamageDoneMostInGame.toLocaleString()
                     : "0"
                   : "0"}
               </span>
@@ -113,9 +115,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Healing</span>
               <span>
-                {heroStats.assists
-                  ? heroStats.assists.healingDoneMostInGame
-                    ? heroStats.assists.healingDoneMostInGame.toLocaleString()
+                {props.heroStats[1].assists
+                  ? props.heroStats[1].assists.healingDoneMostInGame
+                    ? props.heroStats[1].assists.healingDoneMostInGame.toLocaleString()
                     : "0"
                   : "0"}
               </span>
@@ -129,9 +131,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Eliminations</span>
               <span>
-                {heroStats.average
-                  ? heroStats.average.eliminationsAvgPer10Min
-                    ? heroStats.average.eliminationsAvgPer10Min
+                {props.heroStats[1].average
+                  ? props.heroStats[1].average.eliminationsAvgPer10Min
+                    ? props.heroStats[1].average.eliminationsAvgPer10Min
                     : "0"
                   : "0"}
               </span>
@@ -140,9 +142,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Final Blows</span>
               <span>
-                {heroStats.average
-                  ? heroStats.average.finalBlowsAvgPer10Min
-                    ? heroStats.average.finalBlowsAvgPer10Min
+                {props.heroStats[1].average
+                  ? props.heroStats[1].average.finalBlowsAvgPer10Min
+                    ? props.heroStats[1].average.finalBlowsAvgPer10Min
                     : "0"
                   : "0"}
               </span>
@@ -150,9 +152,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Damage</span>
               <span>
-                {heroStats.average
-                  ? heroStats.average.allDamageDoneAvgPer10Min
-                    ? heroStats.average.allDamageDoneAvgPer10Min.toLocaleString()
+                {props.heroStats[1].average
+                  ? props.heroStats[1].average.allDamageDoneAvgPer10Min
+                    ? props.heroStats[1].average.allDamageDoneAvgPer10Min.toLocaleString()
                     : "0"
                   : "0"}
               </span>
@@ -160,9 +162,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Healing</span>
               <span>
-                {heroStats.average
-                  ? heroStats.average.healingDoneAvgPer10Min
-                    ? heroStats.average.healingDoneAvgPer10Min.toLocaleString()
+                {props.heroStats[1].average
+                  ? props.heroStats[1].average.healingDoneAvgPer10Min
+                    ? props.heroStats[1].average.healingDoneAvgPer10Min.toLocaleString()
                     : "0"
                   : "0"}
               </span>
@@ -170,9 +172,9 @@ export default function SelectedHeroStats(props) {
             <p className="flex py-2">
               <span className="w-44 text-gray-500">Deaths</span>
               <span>
-                {heroStats.average
-                  ? heroStats.average.deathsAvgPer10Min
-                    ? heroStats.average.deathsAvgPer10Min
+                {props.heroStats[1].average
+                  ? props.heroStats[1].average.deathsAvgPer10Min
+                    ? props.heroStats[1].average.deathsAvgPer10Min
                     : "0"
                   : "0"}
               </span>
