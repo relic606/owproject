@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  basePath: "/projects/overwatch",
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -2,6 +2,7 @@
   "name": "overwatch",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://andrewtanderson.com/projects/overwatch",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
