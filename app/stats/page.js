@@ -9,9 +9,6 @@ export default function Stats() {
   const [data, setData] = useState(null);
   const [profile, setProfile] = useState("Relic-1203");
 
-  const [inputFieldBt, setInputFieldBt] = useState("");
-  const [inputFieldId, setInputFieldId] = useState("");
-
   const [quickplayHeroList, setQuickplayHeroList] = useState([]);
   const [competitiveHeroList, setCompetitiveHeroList] = useState([]);
 
@@ -215,26 +212,6 @@ export default function Stats() {
 
   const [selectedHero, setSelectedHero] = useState({});
 
-  const newProfile = () => {
-    if (inputFieldBt.length === 0 || inputFieldId.length === 0) {
-      alert("Please provide a Battletag and ID");
-    } else {
-      setProfile(inputFieldBt + "-" + inputFieldId);
-      setData(null);
-    }
-  };
-
-  const inputHandlerBt = (e) => {
-    setInputFieldBt(e.target.value);
-  };
-  const inputHandlerId = (e) => {
-    setInputFieldId(e.target.value);
-  };
-
-  const submitButton = () => {
-    newProfile();
-  };
-
   function statsRadioChange(event) {
     setStatsRadioInput(event.target.value);
 
@@ -313,7 +290,6 @@ export default function Stats() {
     fetch(`https://ow-api.com/v1/stats/pc/us/${profile}/complete`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setData(data);
 
         if (data.private === false) {
@@ -368,70 +344,46 @@ export default function Stats() {
   }, [selectedHero]);
 
   if (!data) {
-    return <p>Loading...</p>;
+    return (
+      <main>
+        <SearchProfile setData={setData} setProfile={setProfile} />
+        <div className="bg-white max-w-xl mx-auto rounded-md p-8 border border-gray-300 drop-shadow-md">
+          <p className=" text-lg">Loading...</p>
+        </div>
+      </main>
+    );
   } else {
-    if (data.error === "Player not found") {
+    if (
+      data.error === "Player not found" ||
+      data.error === "Invalid platform"
+    ) {
       return (
         <main>
-          <input
-            type="text"
-            onChange={inputHandlerBt}
-            placeholder="Battletag"
-            className="border m-4"
-          />
-          <input
-            type="text"
-            onChange={inputHandlerId}
-            placeholder="ID"
-            className="border"
-          />
-          <button onClick={submitButton} className="mx-4 border">
-            Search Profile
-          </button>
-          <p>Player Not Found</p>
+          <SearchProfile setData={setData} setProfile={setProfile} />
+          <div className="bg-white max-w-xl mx-auto rounded-md p-8 border border-gray-300 drop-shadow-md">
+            <p className=" text-lg font-semibold">Player Not Found</p>
+            <p className=" font-light">
+              Try Again - Note the battletag is case sensitive
+            </p>
+          </div>
         </main>
       );
     } else if (data.private === true) {
       return (
         <main>
-          <input
-            type="text"
-            onChange={inputHandlerBt}
-            placeholder="Battletag"
-            className="border m-4"
-          />
-          <input
-            type="text"
-            onChange={inputHandlerId}
-            placeholder="ID"
-            className="border"
-          />
-          <button onClick={submitButton} className="mx-4 border">
-            Search Profile
-          </button>
-          <p>Profile is set to private</p>
+          <SearchProfile setData={setData} setProfile={setProfile} />
+          <div className="bg-white max-w-xl mx-auto rounded-md p-8 border border-gray-300 drop-shadow-md">
+            <p className=" text-lg font-semibold">Profile is set to private</p>
+            <p className=" font-light">Try a different profile</p>
+          </div>
+          <p></p>
         </main>
       );
     } else {
       return (
         <main>
-          <input
-            type="text"
-            onChange={inputHandlerBt}
-            placeholder="Battletag"
-            className="border m-4 ml-8"
-          />
-          <input
-            type="text"
-            onChange={inputHandlerId}
-            placeholder="ID"
-            className="border"
-          />
-
-          <button onClick={submitButton} className="mx-4 border">
-            Search for Profile
-          </button>
-          <section className="bg-white max-w-6xl mx-auto rounded-lg shadow-xl">
+          <SearchProfile setData={setData} setProfile={setProfile} />
+          <section className="bg-white max-w-6xl min-w-fit mx-auto rounded-lg shadow-xl">
             <div className="flex mx-6 py-6">
               <img
                 src={data.icon}
@@ -453,7 +405,7 @@ export default function Stats() {
             </div>
             <div className="h-px bg-gray-300"></div>
             <div className="flex justify-between px-4 pt-4">
-              <div onChange={statsRadioChange} className="mb-4">
+              <div onChange={statsRadioChange} className="mb-4 pl-4">
                 <input
                   type="radio"
                   value="Quickplay"
@@ -471,36 +423,6 @@ export default function Stats() {
                 />
                 Competitive
               </div>
-              {/* <select
-                name="heros"
-                id="hero-select"
-                onChange={filterHero}
-                value={selectedHero}
-                className="bg-gray-100 my-4"
-              >
-                <option key="default" value="allHeroes">
-                  - All Heroes -
-                </option>
-                {statsRadioInput === "Quickplay"
-                  ? quickplayHeroList.map(([hero, key]) => {
-                      const firstLetter = hero.charAt(0).toUpperCase();
-                      const remainingLetters = hero.slice(1);
-                      return (
-                        <option key={hero} value={hero}>
-                          {firstLetter + remainingLetters}
-                        </option>
-                      );
-                    })
-                  : competitiveHeroList.map(([hero, key]) => {
-                      const firstLetter = hero.charAt(0).toUpperCase();
-                      const remainingLetters = hero.slice(1);
-                      return (
-                        <option key={hero} value={hero}>
-                          {firstLetter + remainingLetters}
-                        </option>
-                      );
-                    })}
-              </select> */}
               <div className="w-60 mb-4">
                 <HeroSelect
                   selectedHero={selectedHero}
@@ -522,4 +444,42 @@ export default function Stats() {
       );
     }
   }
+}
+
+function SearchProfile(props) {
+  const [inputField, setInputField] = useState("");
+
+  const inputHandler = (e) => {
+    setInputField(e.target.value);
+  };
+
+  const newProfile = () => {
+    if (inputField.length === 0 || !inputField.includes("#")) {
+      alert(
+        "Please provide your Battletag and ID with a # separating the values"
+      );
+    } else {
+      props.setProfile(inputField.replace("#", "-"));
+      props.setData(null);
+    }
+  };
+
+  return (
+    <div className="flex justify-center py-4 mt-8">
+      <div className="flex flex-nowrap">
+        <input
+          type="text"
+          onChange={inputHandler}
+          placeholder="Battletag#ID"
+          className=" pl-4 h-full rounded-l-md border border-gray-300"
+        />
+        <button
+          onClick={newProfile}
+          className="orange-bg rounded-r-md text-white p-2 px-4"
+        >
+          Search for Profile
+        </button>
+      </div>
+    </div>
+  );
 }

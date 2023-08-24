@@ -1,7 +1,4 @@
 export default function SelectedHeroStats(props) {
-
-
-
   return (
     <div className="px-8 pb-8">
       <div className="flex justify-between">

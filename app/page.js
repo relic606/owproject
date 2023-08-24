@@ -169,8 +169,6 @@ export default function Home() {
         <div className="text-white rounded-md z-10">
           <iframe
             src={videoArr[selectedIndex].URL}
-            frameborder="0"
-            modestbranding
             allow="autoplay; encrypted-media"
             allowFullScreen="allowfullscreen"
             mozallowfullscreen="mozallowfullscreen"
