@@ -423,7 +423,7 @@ export default function Stats() {
                 />
                 Competitive
               </div>
-              <div className="w-60 mb-4">
+              <div className="w-60 mb-4 mr-4">
                 <HeroSelect
                   selectedHero={selectedHero}
                   setSelectedHero={setSelectedHero}
