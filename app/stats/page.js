@@ -404,8 +404,8 @@ export default function Stats() {
               </div>
             </div>
             <div className="h-px bg-gray-300"></div>
-            <div className="flex justify-between px-4 pt-4">
-              <div onChange={statsRadioChange} className="mb-4 pl-4">
+            <div className="flex justify-between px-4 pt-4 mb-8">
+              <div onChange={statsRadioChange} className="pl-4">
                 <input
                   type="radio"
                   value="Quickplay"
@@ -423,7 +423,7 @@ export default function Stats() {
                 />
                 Competitive
               </div>
-              <div className="w-60 mb-4 mr-4">
+              <div className=" w-72 mr-4">
                 <HeroSelect
                   selectedHero={selectedHero}
                   setSelectedHero={setSelectedHero}

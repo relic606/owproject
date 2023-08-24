@@ -33,7 +33,7 @@ export default function HeroSelect(props) {
                   alt=""
                   className="h-5 flex-shrink-0 rounded-full"
                 />
-                <span className="ml-3 block truncate">
+                <span className="ml-3 block truncate font-semibold">
                   {formatName(selected.name)}
                 </span>
               </span>
