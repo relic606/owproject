@@ -98,7 +98,7 @@ export default function Home() {
         <label className="checkbox-label">
           <input type="checkbox" className="checkbox-input" />
           <img
-            src="/icons/Icon-Ana.webp"
+            src="/projects/overwatch/icons/Icon-Ana.webp"
             alt="ana"
             className={checkedImages.includes("Ana") ? "checked h-24" : "h-24"}
             onClick={() => toggleImage("Ana")}
@@ -107,7 +107,7 @@ export default function Home() {
         <label className="checkbox-label">
           <input type="checkbox" className="checkbox-input" />
           <img
-            src="/icons/Icon-Doomfist.webp"
+            src="/projects/overwatch/icons/Icon-Doomfist.webp"
             alt="doomfist"
             className={
               checkedImages.includes("Doomfist") ? "checked h-24" : "h-24"
@@ -118,7 +118,7 @@ export default function Home() {
         <label className="checkbox-label">
           <input type="checkbox" className="checkbox-input" />
           <img
-            src="/icons/Icon-Genji.webp"
+            src="/projects/overwatch/icons/Icon-Genji.webp"
             alt="genji"
             className={
               checkedImages.includes("Genji") ? "checked h-24" : "h-24"
@@ -129,7 +129,7 @@ export default function Home() {
         <label className="checkbox-label">
           <input type="checkbox" className="checkbox-input" />
           <img
-            src="/icons/Icon-Sojourn.webp"
+            src="/projects/overwatch/icons/Icon-Sojourn.webp"
             alt="sojourn"
             className={
               checkedImages.includes("Sojourn") ? "checked h-24" : "h-24"
@@ -140,7 +140,7 @@ export default function Home() {
         <label className="checkbox-label">
           <input type="checkbox" className="checkbox-input" />
           <img
-            src="/icons/Icon-Widowmaker.webp"
+            src="/projects/overwatch/icons/Icon-Widowmaker.webp"
             alt="widowmaker"
             className={
               checkedImages.includes("Widowmaker") ? "checked h-24" : "h-24"

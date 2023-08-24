@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <div className="bg-[url('/ow-bg4.png')] bg-cover background-container -z-10"></div>
+        <div className="bg-[url('/projects/overwatch/ow-bg4.png')] bg-cover background-container -z-10"></div>
         {children}
       </body>
     </html>
