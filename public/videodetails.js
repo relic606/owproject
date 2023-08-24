@@ -24,6 +24,18 @@ const VIDEOCLIPS = [
     img: "http://img.youtube.com/vi_webp/fRq7BDBqVNo/0.webp",
   },
   {
+    hero: "Ana",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/MJToYtgd4OM",
+    img: "http://img.youtube.com/vi_webp/MJToYtgd4OM/0.webp",
+  },
+  {
+    hero: "Ana",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/APMuPH2mc1w",
+    img: "http://img.youtube.com/vi_webp/APMuPH2mc1w/0.webp",
+  },
+  {
     hero: "Doomfist",
     type: "highlight",
     URL: "https://www.youtube.com/embed/2N8uqM6ZxjE",
@@ -96,10 +108,28 @@ const VIDEOCLIPS = [
     img: "http://img.youtube.com/vi_webp/Gb4KP7dz0Kg/0.webp",
   },
   {
+    hero: "Genji",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/yv2DNwAK5Tc",
+    img: "http://img.youtube.com/vi_webp/yv2DNwAK5Tc/0.webp",
+  },
+  {
     hero: "Sojourn",
     type: "highlight",
     URL: "https://www.youtube.com/embed/ZXPaISVmpm8",
     img: "http://img.youtube.com/vi_webp/ZXPaISVmpm8/0.webp",
+  },
+  {
+    hero: "Sojourn",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/X8lQyj7PVwo",
+    img: "http://img.youtube.com/vi_webp/X8lQyj7PVwo/0.webp",
+  },
+  {
+    hero: "Sojourn",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/478-iRquFpE",
+    img: "http://img.youtube.com/vi_webp/478-iRquFpE/0.webp",
   },
 
   {
@@ -149,6 +179,24 @@ const VIDEOCLIPS = [
     type: "highlight",
     URL: "https://www.youtube.com/embed/8y_yu71KQxo",
     img: "http://img.youtube.com/vi_webp/8y_yu71KQxo/0.webp",
+  },
+  {
+    hero: "Widowmaker",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/Dn-tWQ7hPMo",
+    img: "http://img.youtube.com/vi_webp/Dn-tWQ7hPMo/0.webp",
+  },
+  {
+    hero: "Widowmaker",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/N5fFGh0O5bY",
+    img: "http://img.youtube.com/vi_webp/N5fFGh0O5bY/0.webp",
+  },
+  {
+    hero: "Widowmaker",
+    type: "highlight",
+    URL: "https://www.youtube.com/embed/VpEieNT1RMQ",
+    img: "http://img.youtube.com/vi_webp/VpEieNT1RMQ/0.webp",
   },
 ];
 
