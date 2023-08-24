@@ -14,7 +14,7 @@ export default function Header() {
       >
         <Link href={"/"}>
           <Image
-            src="/icons/Icon-Overwatch.png"
+            src="/projects/overwatch/icons/Icon-Overwatch.png"
             width={80}
             height={0}
             alt="overwatch logo"
