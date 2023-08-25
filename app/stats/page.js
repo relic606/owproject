@@ -357,7 +357,8 @@ export default function Stats() {
 					<div className="bg-white max-w-xl mx-auto rounded-md p-8 border border-gray-300 drop-shadow-md">
 						<p className=" text-lg font-semibold">Player Not Found</p>
 						<p className=" font-light">
-							Try Again - Note the battletag is case sensitive
+							Change Battletag#ID and try again - Note the battletag is case
+							sensitive
 						</p>
 					</div>
 				</main>
@@ -462,7 +463,6 @@ function SearchProfile(props) {
 			);
 		} else {
 			if (inputField.replace("#", "-") !== props.profile) {
-				console.log(inputField.replace("#", "-"), props.profile);
 				props.setProfile(inputField.replace("#", "-"));
 				props.setData(null);
 			}
