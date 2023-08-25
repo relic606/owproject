@@ -332,7 +332,11 @@ export default function Stats() {
 	if (!data) {
 		return (
 			<main>
-				<SearchProfile setData={setData} setProfile={setProfile} />
+				<SearchProfile
+					profile={profile}
+					setData={setData}
+					setProfile={setProfile}
+				/>
 				<div className="bg-white max-w-xl mx-auto rounded-md p-8 border border-gray-300 drop-shadow-md">
 					<p className=" text-lg">Loading...</p>
 				</div>
@@ -345,7 +349,11 @@ export default function Stats() {
 		) {
 			return (
 				<main>
-					<SearchProfile setData={setData} setProfile={setProfile} />
+					<SearchProfile
+						profile={profile}
+						setData={setData}
+						setProfile={setProfile}
+					/>
 					<div className="bg-white max-w-xl mx-auto rounded-md p-8 border border-gray-300 drop-shadow-md">
 						<p className=" text-lg font-semibold">Player Not Found</p>
 						<p className=" font-light">
@@ -357,7 +365,11 @@ export default function Stats() {
 		} else if (data.private === true) {
 			return (
 				<main>
-					<SearchProfile setData={setData} setProfile={setProfile} />
+					<SearchProfile
+						profile={profile}
+						setData={setData}
+						setProfile={setProfile}
+					/>
 					<div className="bg-white max-w-xl mx-auto rounded-md p-8 border border-gray-300 drop-shadow-md">
 						<p className=" text-lg font-semibold">Profile is set to private</p>
 						<p className=" font-light">Try a different profile</p>
@@ -368,7 +380,11 @@ export default function Stats() {
 		} else {
 			return (
 				<main>
-					<SearchProfile setData={setData} setProfile={setProfile} />
+					<SearchProfile
+						profile={profile}
+						setData={setData}
+						setProfile={setProfile}
+					/>
 					<section className="bg-white max-w-6xl min-w-fit mx-auto rounded-lg shadow-xl">
 						<div className="flex mx-6 py-6">
 							<img
@@ -445,8 +461,11 @@ function SearchProfile(props) {
 				"Please provide your Battletag and ID with a # separating the values"
 			);
 		} else {
-			props.setProfile(inputField.replace("#", "-"));
-			props.setData(null);
+			if (inputField.replace("#", "-") !== props.profile) {
+				console.log(inputField.replace("#", "-"), props.profile);
+				props.setProfile(inputField.replace("#", "-"));
+				props.setData(null);
+			}
 		}
 	};
 
