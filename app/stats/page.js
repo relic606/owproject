@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import AllHeroStats from "../components/AllHeroStats";
 import SelectedHeroStats from "../components/SelectedHeroStats";
 import HeroSelect from "../components/HeroSelect";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function Stats() {
   const [data, setData] = useState(null);
-  const [profile, setProfile] = useState("Relic-1203");
+
+  const [profile, setProfile] = useState("");
 
   const [quickplayHeroList, setQuickplayHeroList] = useState([]);
   const [competitiveHeroList, setCompetitiveHeroList] = useState([]);
@@ -21,6 +23,7 @@ export default function Stats() {
   const [heroStats, setHeroStats] = useState({});
 
   const [selectHeroArr, setSelectHeroArr] = useState({});
+  const [selectedHero, setSelectedHero] = useState({});
 
   const HEROES = [
     {
@@ -210,8 +213,6 @@ export default function Stats() {
     },
   ];
 
-  const [selectedHero, setSelectedHero] = useState({});
-
   function statsRadioChange(event) {
     setStatsRadioInput(event.target.value);
 
@@ -272,8 +273,24 @@ export default function Stats() {
     }
   }
 
+  function shareBtn() {
+    navigator.clipboard.writeText(window.location.href);
+    alert("Copied to clipboard");
+  }
+
   useEffect(() => {
-    fetch(`https://ow-api.com/v1/stats/pc/us/${profile}/complete`)
+    let urlParams = "";
+    if (window.location.search !== "") {
+      urlParams = new URLSearchParams(window.location.search)
+        .get("profile")
+        .replace("#", "-");
+      setProfile(urlParams);
+    } else {
+      urlParams = "Relic-1203";
+      setProfile("Relic-1203");
+    }
+
+    fetch(`https://ow-api.com/v1/stats/pc/us/${urlParams}/complete`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -392,7 +409,7 @@ export default function Stats() {
               <div className="flex">
                 <img
                   src={data.icon}
-                  className="rounded-xl w-16"
+                  className="rounded-xl h-fit w-16"
                   alt="Profile Image"
                 ></img>
                 <div className="my-auto pl-4">
@@ -410,9 +427,9 @@ export default function Stats() {
                   </p>
                 </div>
               </div>
-              <div className="">
+              <div>
                 {data.ratings ? (
-                  <div className="flex h-12 mt-3 text-sm">
+                  <div className="flex h-12pr-5 text-sm">
                     {data.ratings.map((roleRank) => {
                       function formatName(name) {
                         const firstLetter = name.charAt(0).toUpperCase();
@@ -423,12 +440,8 @@ export default function Stats() {
                       return (
                         <div
                           key={roleRank.role}
-                          className="flex flex-col justify-center pl-8 font-light"
+                          className="flex flex-col justify-center pl-8 font-light min-w-fit"
                         >
-                          <img
-                            src={roleRank.rankIcon}
-                            className="h-14 w-fit mx-auto"
-                          />
                           {roleRank.role === "offense" ? (
                             <p className="mx-auto">Damage</p>
                           ) : (
@@ -436,17 +449,32 @@ export default function Stats() {
                               {formatName(roleRank.role)}
                             </p>
                           )}
+                          <img
+                            src={roleRank.rankIcon}
+                            className="h-14 w-fit mx-auto"
+                            alt="rank icon"
+                          />
                         </div>
                       );
                     })}
-                 
                   </div>
                 ) : null}
+              </div>
+              <div className="my-auto">
+                <button
+                  onClick={shareBtn}
+                  className="py-2 px-4 border border-gray-300 rounded-md"
+                >
+                  Share
+                </button>
               </div>
             </div>
             <div className="h-px bg-gray-300"></div>
             <div className="flex justify-between px-4 pt-4 mb-8">
-              <div onChange={statsRadioChange} className="pl-4">
+              <div
+                onChange={statsRadioChange}
+                className="pl-4 flex flex-nowrap h-fit"
+              >
                 <input
                   type="radio"
                   value="Quickplay"
@@ -465,7 +493,7 @@ export default function Stats() {
                 Competitive
               </div>
 
-              <div className=" w-72 mr-4">
+              <div className=" w-64 mr-4">
                 <HeroSelect
                   selectedHero={selectedHero}
                   setSelectedHero={setSelectedHero}
@@ -491,8 +519,13 @@ export default function Stats() {
 function SearchProfile(props) {
   const [inputField, setInputField] = useState("");
 
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const inputHandler = (e) => {
     setInputField(e.target.value);
+    router.push(pathname + "?" + createQueryString("profile", e.target.value));
   };
 
   const newProfile = () => {
@@ -507,6 +540,15 @@ function SearchProfile(props) {
       }
     }
   };
+
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+      return params.toString();
+    },
+    [searchParams]
+  );
 
   return (
     <div className="flex justify-center py-4 mt-8">
