@@ -555,7 +555,7 @@ function SearchProfile(props) {
       <div className="flex flex-nowrap">
         <input
           type="text"
-          onChange={inputHandler}
+          onClick={inputHandler}
           placeholder="Battletag#ID"
           className=" pl-4 h-full rounded-l-md border border-gray-300"
         />
