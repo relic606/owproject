@@ -525,10 +525,10 @@ function SearchProfile(props) {
 
   const inputHandler = (e) => {
     setInputField(e.target.value);
-    router.push(pathname + "?" + createQueryString("profile", e.target.value));
   };
 
   const newProfile = () => {
+    router.push(pathname + "?" + createQueryString("profile", inputField));
     if (inputField.length === 0 || !inputField.includes("#")) {
       alert(
         "Please provide your Battletag and ID with a # separating the values"
@@ -555,7 +555,7 @@ function SearchProfile(props) {
       <div className="flex flex-nowrap">
         <input
           type="text"
-          onClick={inputHandler}
+          onChange={inputHandler}
           placeholder="Battletag#ID"
           className=" pl-4 h-full rounded-l-md border border-gray-300"
         />
