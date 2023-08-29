@@ -12,7 +12,7 @@ export default function Header() {
         className="absolute left-10
       top-2"
       >
-        <Link href={"/"} passHref>
+        <Link href={"/"}>
           <Image
             src="/projects/overwatch/icons/Icon-Overwatch.png"
             width={80}
@@ -33,7 +33,6 @@ export default function Header() {
                     : "font-semibold text-gray-800"
                 }
                 `}
-            passHref
           >
             Highlights
           </Link>
@@ -45,7 +44,6 @@ export default function Header() {
                 ? "font-bold"
                 : "font-semibold text-gray-800"
             }`}
-            passHref
           >
             Stats
           </Link>
