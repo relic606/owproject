@@ -279,10 +279,6 @@ export default function Stats() {
     alert("Copied to clipboard");
   }
 
-  // copy("Text");
-
-  // Copy with options
-
   useEffect(() => {
     let urlParams = "";
     if (window.location.search !== "") {
@@ -549,13 +545,13 @@ function SearchProfile(props) {
   };
 
   const newProfile = () => {
-    router.push(pathname + "?" + createQueryString("profile", inputField));
     if (inputField.length === 0 || !inputField.includes("#")) {
       alert(
         "Please provide your Battletag and ID with a # separating the values"
       );
     } else {
       if (inputField.replace("#", "-") !== props.profile) {
+        router.push(pathname + "?" + createQueryString("profile", inputField));
         props.setProfile(inputField.replace("#", "-"));
         props.setData(null);
       }
