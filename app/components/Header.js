@@ -46,6 +46,17 @@ export default function Header() {
           >
             Stats
           </Link>
+          <Link
+            href={"/test"}
+            className={`orange-text transition delay-50 p-4
+            ${
+              pathName === "/stats"
+                ? "font-bold"
+                : "font-semibold text-gray-800"
+            }`}
+          >
+            test
+          </Link>
         </nav>
       </div>
     </header>
