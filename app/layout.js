@@ -1,7 +1,26 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "./components/Header";
+import Head from "next/head";
 
+const ClarityScript = () => {
+  const scriptCode = `
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "imyhmmsipt");
+  `;
+
+  return (
+    <Head>
+      <script
+        type="text/javascript"
+        dangerouslySetInnerHTML={{ __html: scriptCode }}
+      />
+    </Head>
+  );
+};
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -12,6 +31,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      {ClarityScript()}
       <body className={inter.className}>
         <Header />
         <div className="bg-[url('/projects/overwatch/ow-bg4.png')] bg-cover background-container -z-10"></div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import VIDEOCLIPS from "../public/videodetails.js";
 import Image from "next/image";
 
+
 export default function Home() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedHero, setSelectedHero] = useState("default");
