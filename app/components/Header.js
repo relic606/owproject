@@ -12,7 +12,7 @@ export default function Header() {
         className="absolute left-10
       top-2"
       >
-        <Link href={"/"}>
+        <Link href={"/"} passHref>
           <Image
             src="/projects/overwatch/icons/Icon-Overwatch.png"
             width={80}
@@ -26,12 +26,14 @@ export default function Header() {
           <Link
             href={"/"}
             className={`orange-text transition delay-50 p-4 font
+          
                 ${
                   pathName === "/"
                     ? "font-extrabold"
                     : "font-semibold text-gray-800"
                 }
                 `}
+            passHref
           >
             Highlights
           </Link>
@@ -43,19 +45,9 @@ export default function Header() {
                 ? "font-bold"
                 : "font-semibold text-gray-800"
             }`}
+            passHref
           >
             Stats
-          </Link>
-          <Link
-            href={"/test"}
-            className={`orange-text transition delay-50 p-4
-            ${
-              pathName === "/stats"
-                ? "font-bold"
-                : "font-semibold text-gray-800"
-            }`}
-          >
-            test
           </Link>
         </nav>
       </div>
