@@ -12,7 +12,6 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
-    "@netlify/plugin-nextjs": "^4.40.1",
     "autoprefixer": "10.4.14",
     "copy-to-clipboard": "^3.3.3",
     "eslint": "8.46.0",
