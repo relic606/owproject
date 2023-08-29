@@ -5,6 +5,7 @@ import AllHeroStats from "../components/AllHeroStats";
 import SelectedHeroStats from "../components/SelectedHeroStats";
 import HeroSelect from "../components/HeroSelect";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import copy from "copy-to-clipboard";
 
 export default function Stats() {
   const [data, setData] = useState(null);
@@ -274,9 +275,13 @@ export default function Stats() {
   }
 
   function shareBtn() {
-    navigator.clipboard.writeText(window.location.href);
+    copy(window.location.href);
     alert("Copied to clipboard");
   }
+
+  // copy("Text");
+
+  // Copy with options
 
   useEffect(() => {
     let urlParams = "";
@@ -463,17 +468,31 @@ export default function Stats() {
               <div className="my-auto">
                 <button
                   onClick={shareBtn}
-                  className="py-2 px-4 border border-gray-300 rounded-md"
+                  className="py-2 px-4 border border-gray-300 rounded-md flex"
                 >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4 mr-2 my-auto"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"
+                    />
+                  </svg>
                   Share
                 </button>
               </div>
             </div>
             <div className="h-px bg-gray-300"></div>
-            <div className="flex justify-between px-4 pt-4 mb-8">
+            <div className="flex justify-between px-4 pt-6 mb-8">
               <div
                 onChange={statsRadioChange}
-                className="pl-4 flex flex-nowrap h-fit"
+                className="pl-4 flex flex-nowrap h-fit my-auto"
               >
                 <input
                   type="radio"
@@ -481,19 +500,21 @@ export default function Stats() {
                   name="stats"
                   checked={statsRadioInput === "Quickplay"}
                   className="mr-1"
+                  id="quickplay"
                 />
-                Quickplay
+                <label for="quickplay">Quickplay</label>
                 <input
                   type="radio"
                   value="Competitive"
                   name="stats"
                   checked={statsRadioInput === "Competitive"}
                   className="ml-8 mr-1"
+                  id="competitive"
                 />
-                Competitive
+                <label for="competitive">Competitive</label>
               </div>
 
-              <div className=" w-64 mr-4">
+              <div className=" w-64 mr-4 mt-2">
                 <HeroSelect
                   selectedHero={selectedHero}
                   setSelectedHero={setSelectedHero}
